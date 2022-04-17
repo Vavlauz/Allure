@@ -1,0 +1,1 @@
+# CI Project [![Build status](https://ci.appveyor.com/api/projects/status/oq4ygeqbwmrs16u6?svg=true)](https://ci.appveyor.com/project/Vavlauz/patterns)
