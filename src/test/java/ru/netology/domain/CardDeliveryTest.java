@@ -2,6 +2,9 @@ package ru.netology.domain;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +21,12 @@ import static org.openqa.selenium.Keys.chord;
 import static ru.netology.domain.DataGenerator.*;
 
 public class CardDeliveryTest {
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
 
     @BeforeEach
     public void setUp() {
@@ -304,6 +313,12 @@ public class CardDeliveryTest {
         $("[data-test-id=success-notification] .notification__content")
                 .should(appear, ofSeconds(15))
                 .shouldHave(exactText("Встреча успешно запланирована на  " + secondDate));
+    }
+
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
     }
 
 }
